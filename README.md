@@ -1,2 +1,2 @@
 # learning
-learn to coding or something else
+coding or learn something else
