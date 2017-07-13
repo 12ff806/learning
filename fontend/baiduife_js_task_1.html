@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+    <head>
+        <meta charset="utf-8">
+        <title>baidu ife | JavaScript task 1</title>
+    </head>
+    <body>
+        <label>请输入北京今天空气质量: <input type="text" id="aqi-input"></label>
+        <button id="button">确认填写</button>
+        
+        <div>您输入的值是: <span id="aqi-display">尚未输入</span></div>
+
+    <script type="text/javascript">
+    
+    (function() {
+        var aqi = document.getElementById("aqi-input");
+        var btn = document.getElementById("button");
+        var display = document.getElementById("aqi-display");
+
+        btn.addEventListener("click", function() {
+            display.innerHTML = aqi.value;
+            aqi.value = "";
+        })
+    })();
+
+    </script>
+    </body>
+</html>

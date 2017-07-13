@@ -1,0 +1,60 @@
+.hide{
+    display: none;
+}
+
+.show{
+    display: block;
+}
+
+ul{
+    font: 24px "Monospace";
+    list-style-type: none;
+}
+
+a{
+    color: black;
+    text-decoration: none;
+}
+
+#tablist{
+    width: 700px;
+    height: 345px;
+    margin: 100px auto;
+}
+
+#tablist div{
+    border: solid 1px black;
+    border-top: none;
+    margin-top: -26px;
+    padding-top: 1px;
+}
+
+#tablist div li{
+    height: 60px;
+    line-height: 60px;
+}
+
+#tabmenu{
+    height: 62px;
+    border-bottom: solid 2px red;
+    padding-left: 10px;
+}
+
+#tabmenu li{
+    display: inline-block;
+    border: solid 1px black;
+    border-bottom: none;
+    margin-left: 10px;
+    width: 80px;
+    line-height: 60px;
+    text-align: center;
+}
+
+#tabmenu li:hover{
+    cursor: pointer;
+}
+
+#tabmenu li.active{
+    border-top: solid 2px red;
+    border-bottom: solid 2px #FFFFFF;
+}

@@ -1,0 +1,95 @@
+.show-border {
+    border-style: solid;
+    border-color: red;
+    border-width: 1px;
+    text-align: center;
+    padding: 10px 10px;
+}
+
+/* 固定宽度，居中 */
+.main-center-1 {
+    width: 1200px;
+    margin: 10px auto;
+}
+
+/* 最大宽度，当实际宽度小于最大宽度时会自动调整，居中 */
+.main-center-2 {
+    max-width: 1200px;
+    margin: 10px auto;
+}
+
+/* .simple和.fancy虽然设置了相同的width值，但由于padding值不同导致最终显示宽度并不一致 */
+.simple {
+    width: 1200px;
+    margin: 10px auto;
+}
+
+.fancy {
+    width: 1200px;
+    margin: 10px auto;
+    padding: 50px;
+}
+
+/* 当.simple-box-sizing和.fancy-box-sizing设置了box-sizing属性后，不管padding/border的宽度是多少，只要两个样式的width值相同，就会显示一样宽 */
+.simple-box-sizing {
+    width: 1200px;
+    margin: 10px auto;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+}
+
+.fancy-box-sizing {
+    width: 1200px;
+    margin: 10px auto;
+    padding: 50px;
+    border-width: 20px;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+}
+
+/* position 属性 */
+/* static 是默认值。任意 position:static; 的元素不会被特殊的定位。一个 static 元素表示它不会被“positioned”，一个 position 属性被设置为其他值的元素表示它会被“positioned”。*/
+.static {
+    position: static;
+}
+
+/* relative 表现的和 static 一样，除非你添加了一些额外的属性。 */
+.relative1 {
+    position: relative;
+}
+
+/* 在一个相对定位（position属性的值为relative）的元素上设置 top 、 right 、 bottom 和 left 属性会使其偏离其正常位置。其他的元素的位置则不会受该元素的影响发生位置改变来弥补它偏离后剩下的空隙。 */
+.relative2 {
+    position: relative;
+    top: -20px;
+    left: 20px;
+    width: 1200px;
+    background-color: green;
+}
+
+/* fixed 一个固定定位（position属性的值为fixed）元素会相对于视窗来定位，这意味着即便页面滚动，它还是会停留在相同的位置。和 relative 一样， top 、 right 、 bottom 和 left 属性都可用。一个固定定位元素不会保留它原本在页面应有的空隙（脱离文档流）。 */
+.fixed {
+    position: fixed;
+    right: 0px;
+    bottom: 0px;
+    width: 200px;
+    background-color: orange;
+}
+
+/* absolute 与 fixed 的表现类似，但是它不是相对于视窗而是相对于最近的“positioned”祖先元素。如果绝对定位（position属性的值为absolute）的元素没有“positioned”祖先元素，那么它是相对于文档的 body 元素，并且它会随着页面滚动而移动。记住一个“positioned”元素是指 position 值不是 static 的元素。 */
+.relative {
+    position: relative;
+    width: 600px;
+    height: 400px;
+}
+
+.absolute {
+    position: absolute;
+    top: 120px;
+    right: 0px;
+    width: 300px;
+    height: 200px;
+    background-color: red;
+}

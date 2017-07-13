@@ -1,0 +1,49 @@
+*{
+    margin: 0px;
+    padding: 0px;
+}
+
+body{
+    background-color: #128765;
+}
+
+.container{
+    position: relative;
+    background-color: white;
+    height: 1000px;
+    width: 80%;
+    margin: 20px auto;
+    resize: both;
+    overflow: auto;
+}
+
+.gray-box{
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: #ccc;
+    width: 400px;
+    height: 200px;
+    overflow: hidden;
+}
+
+.left-top{
+    position: absolute;
+    top: -50px;
+    left: -50px;
+    width: 100px;
+    height: 100px;
+    background-color: #fc0;
+    border-radius: 50%;
+}
+
+.right-bottom{
+    position: absolute;
+    bottom: -50px;
+    right: -50px;
+    width: 100px;
+    height: 100px;
+    background-color: #fc0;
+    border-radius: 50%;
+}

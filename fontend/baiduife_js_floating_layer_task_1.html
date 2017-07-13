@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+    <head>
+        <meta charset="utf-8" >
+        <title>Baidu ife | JavaScript floating layer task 01</title>
+        <link href="css/baiduife_js_floating_layer_task_1.css" type="text/css" rel="stylesheet">
+        <link href="css/baiduife_js_floating_layer_task_1_flayer.css" type="text/css" rel="stylesheet">
+    </head>
+    <body>
+        <div id="wrap">
+            <div id="title">
+                <p>请输入弹窗的标题:</p>
+                <input type="text" id="title-input" name="title">
+            </div>
+            <div id="content">
+                <p>请输入弹窗的内容:</p>
+                <input type="text" id="content-input" name="content">
+            </div>
+            <div id="button">
+                <p>弹窗中是否需要按钮?</p>
+                <label for="buttony">需要</label>
+                <input type="radio" id="buttony" name="button" value="yes">
+                <label for="buttonn">不需要</label>
+                <input type="radio" id="buttonn" name="button" value="no" checked>
+            </div>
+            <div id="scroll">
+                <p>弹窗后屏幕是否可以滚动?</p>
+                <label for="scrolly">可以</label>
+                <input type="radio" id="scrolly" name="scroll" value="yes">
+                <label for="scrolln">不可以</label>
+                <input type="radio" id="scrolln" name="scroll" value="no" checked>
+            </div>
+            <div id="setwh">
+                <p>是否设置弹窗的大小?</p>
+                <label for="sety">设置</label>
+                <input type="radio" id="sety" name="setwh" value="yes">
+                <label for="setn">不设置</label>
+                <input type="radio" id="setn" name="setwh" value="no" checked>
+            </div>
+            <div id="wh" class="hide">
+                <label for="w-input">宽度:</label>
+                <input type="text" id="w-input">
+                <label for="h-input">高度:</label>
+                <input type="text" id="h-input">
+            </div>
+            <div id="move">
+                <p>弹窗是否可以移动?</p>
+                <label for="movey">可以</label>
+                <input type="radio" id="movey" name="move" value="yes" checked>
+                <label for="moven">不可以</label>
+                <input type="radio" id="moven" name="move" value="no">
+            </div>
+            <div id="resize">
+                <p>弹窗是否可以拖拽缩放?</p>
+                <label for="resizey">可以</label>
+                <input type="radio" id="resizey" name="resize" value="yes">
+                <label for="resizen">不可以</label>
+                <input type="radio" id="resizen" name="resize" value="no" checked>
+            </div>
+            <button id="btn">show floating layer</button>
+        </div>
+        <script src="js/baiduife_js_floating_layer_task_1_flayer.js"></script>
+        <script src="js/baiduife_js_floating_layer_task_1.js"></script>
+    </body>
+</html>

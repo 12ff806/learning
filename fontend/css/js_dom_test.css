@@ -1,0 +1,23 @@
+div{
+    width: 300px;
+    border: solid 1px black;
+    margin: 30px auto;
+}
+
+table{
+    width: 300px;
+    text-align: center;
+}
+
+table tr th{
+    border: solid 1px red;
+}
+
+table tr td{
+    border: solid 1px green;
+}
+
+button{
+    width: 100px;
+    margin: 5px 108px;
+}

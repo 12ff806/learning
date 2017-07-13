@@ -1,0 +1,322 @@
+/* global */
+*{
+    margin: 0px;
+    padding: 0px;
+}
+
+body{
+    padding: 20px;
+}
+
+.show-border{
+    background-color: #FFFFFF;
+    margin: 20px 0px;
+    padding: 20px;
+}
+
+.caption{
+    font-size: 20px;
+    font-weight: 700;
+    margin-bottom: 20px;
+}
+
+
+
+/* 水平居中 */
+.horizontally{
+    background-color: #f06d06;
+    padding: 20px;
+    margin-bottom: 20px;
+}
+
+/* inline元素居中 */
+.center-children{
+    text-align: center ;
+}
+
+nav a{
+    text-decoration: none;
+    padding: 3px 8px;
+    border-radius: 5px;
+    background-color: #333;
+    color: white;
+}
+
+/* block元素居中 */
+.center-me{
+    color: white;
+    background-color: black;
+    width: 350px;
+    margin: 0px auto;
+    padding: 20px;
+}
+
+/* 多个block元素居中在一行内的两种实现 */
+/* 1 */
+.inline-block-center{
+    text-align: center;
+}
+
+.inline-block-center div{
+    display: inline-block;
+    max-width: 200px;
+    padding: 20px;
+    margin-right: 20px;
+    background-color: black;
+    color: white;
+}
+
+/* 2 */
+.flex-center{
+    display: flex;
+    justify-content: center;
+}
+
+.flex-center div{
+    max-width: 200px;
+    padding: 20px;
+    margin-right: 20px;
+    background-color: black;
+    color: white;
+}
+
+/* 多个block元素居中在多行内 */
+.center div{
+    background-color: black;
+    color: white;
+    padding: 20px;
+    margin: 0px auto;
+}
+
+.center div:nth-child(1){
+    width: 200px;
+}
+
+.center div:nth-child(2){
+    width: 400px;
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+
+.center div:nth-child(3){
+    width: 120px;
+}
+
+
+
+/* 垂直居中 */
+.vertically{
+    background-color: #6df006;
+    padding: 20px;
+    margin-bottom: 20px;
+}
+
+/* 单行inline垂直居中的两种实现方式 */
+/* 1 padding */
+.padding-center{
+    padding: 50px;
+}
+
+.vertically div.padding-center a{
+    background-color: black;
+    color: white;
+    text-decoration: none;
+    padding: 40px 30px;
+}
+
+/* 2 line-height*/
+.line-height-center div{
+    height: 100px;
+    line-height: 100px;
+    width: 50%;
+    background-color: black;
+    color: white;
+    padding: 20px;
+    white-space: nowrap;   /* 禁止文本换行 */
+}
+
+/* 多行inline垂直居中的多种实现方式 */
+/* 1 real table */
+.vertically table{
+    background-color: white;
+    width: 200px;
+    height: 240px;
+    margin: 20px;
+}
+
+.vertically td{
+    background-color: black;
+    color: white;
+    border: solid 10px white;
+    padding: 20px;
+}
+
+/* 2 display: table */
+.vertically .center-table{
+    display: table;
+    background-color: white;
+    width: 200px;
+    height: 240px;
+    margin: 20px;
+    border-collapse: separate;
+}
+
+.vertically .center-table p{
+    display: table-cell;
+    background-color: black;
+    color: white;
+    padding: 20px;
+    border: solid 10px white;
+    vertical-align: middle;
+}
+
+/* 3 */
+
+/* 固定高度的block元素垂直居中的实现方式 */
+.vertically div.position-center{
+    position: relative;
+    width: 300px;
+    height: 300px;
+    resize: vertical;
+    overflow: auto;    /* 这里的 "resize + overflow" 定义用户可以调整div的大小 */
+    background-color: white;
+    margin: 20px;
+}
+
+.vertically div.position-center div{
+    position: absolute;
+    height: 100px;
+    background-color: black;
+    color: white;
+    padding: 20px;
+    left: 20px;
+    right: 20px;
+    top: 50%;
+    margin-top: -70px;
+}
+
+/* 未知高度的block元素垂直居中的两种实现方式 */
+/* 1 position */
+.vertically div.position-unknow-height-center{
+    position: relative;
+    width: 300px;
+    height: 300px;
+    resize: vertical;
+    overflow: auto;
+    background-color: white;
+    margin: 20px;
+}
+
+.vertically div.position-unknow-height-center div{
+    position: absolute;
+    background-color: black;
+    color: white;
+    padding: 20px;
+    left: 20px;
+    right: 20px;
+    top: 50%;
+    transform: translateY(-50%);
+    resize: vertical;
+    overflow: auto;
+}
+
+/* 2 flexbox */
+.vertically div.flex-unknow-height-center{
+    width: 200px;
+    height: 300px;
+    resize: vertical;
+    overflow: auto;
+    background-color: white;
+    margin: 20px;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.vertically div.flex-unknow-height-center div{
+    background-color: black;
+    color: white;
+    padding: 20px;
+    resize: vertical;
+    overflow: auto;
+}
+
+
+
+/* 水平和垂直居中 */
+.horizontally-and-vertically{
+    background-color: #6d06f0;
+    padding: 20px;
+    margin-bottom: 20px;
+}
+
+/* 固定宽度和高度的block元素实现水平居中和垂直居中 */
+.horizontally-and-vertically div.position-fixed-height-center{
+    position: relative;
+    width: 60%;
+    height: 300px;
+    resize: both;
+    overflow: auto;    /* 这里的 "resize + overflow" 定义用户可以调整div的大小 */
+    background-color: white;
+    margin: 20px;
+}
+
+.horizontally-and-vertically div.position-fixed-height-center div{
+    position: absolute;
+    height: 100px;
+    width: 200px;
+    background-color: black;
+    color: white;
+    padding: 20px;
+    left: 50%;
+    top: 50%;
+    margin: -70px 0px 0px -120px;
+}
+
+/* 未知宽度和高度的block元素实现水平居中和垂直居中的两种方式 */
+/* 1 position */
+.horizontally-and-vertically div.position-unknow-height-center{
+    position: relative;
+    width: 60%;
+    height: 300px;
+    background-color: white;
+    margin: 20px;
+    resize: both;
+    overflow: auto;
+}
+
+.horizontally-and-vertically div.position-unknow-height-center div{
+    position: absolute;
+    background-color: black;
+    color: white;
+    padding: 20px;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    resize: both;
+    overflow: auto;
+}
+
+/* 2 flexbox */
+.horizontally-and-vertically div.flex-unknow-height-center{
+    width: 60%;
+    height: 300px;
+    background-color: white;
+    margin: 20px;
+    padding: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    resize: both;
+    overflow: auto;
+}
+
+.horizontally-and-vertically div.flex-unknow-height-center div{
+    background-color: black;
+    color: white;
+    padding: 20px;
+    resize: both;
+    overflow: auto;
+}
+

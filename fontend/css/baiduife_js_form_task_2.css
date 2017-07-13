@@ -1,0 +1,72 @@
+*{
+    margin: 0px;
+    padding: 0px;
+}
+
+body{
+    background-color: #000;
+    font-size: 14px;
+}
+
+form{
+    width: 900px;
+    height: auto;
+    background-color: #fff;
+    padding: 40px;
+    margin: 200px auto;
+    border-radius: 20px;
+}
+
+#name,
+#passwd,
+#passwd-again,
+#email,
+#mobile{
+    padding: 20px;
+    text-align: left;
+}
+
+label{
+    display: inline-block;
+    font-size: 26px;
+    width: 110px;
+    text-align: right;
+
+}
+
+#user-name,
+#user-passwd,
+#user-passwd-again,
+#user-email,
+#user-mobile{
+    width: 650px;
+    height: 60px;
+    border-radius: 5px;
+    border: solid 1px #aaa;
+    margin-left: 40px;
+    font-size: 26px;
+    text-indent: 5px;
+}
+
+p{
+    font-size: 26px;
+    color: #999;
+    margin: 8px 0px 0px 153px;
+}
+
+#submit{
+    padding: 20px;
+    text-align: right;
+}
+
+#btn-submit{
+    width: 120px;
+    height: 50px;
+    font-size: 26px;
+    background-color: #006daa;
+    color: #fff;
+    border-style: none;
+    border-radius: 8px;
+    margin-right: 55px;
+    cursor: pointer;
+}

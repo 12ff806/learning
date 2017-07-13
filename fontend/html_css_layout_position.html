@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title>学习position</title>
+        <style>
+            .container {
+                position: relative;
+                margin: 0 auto;
+                max-width: 1200px;
+                border: 1px black solid;
+            }
+            .banar {
+                position: static;
+                border: 1px black solid;
+            }
+            .nav {
+                position: absolute;
+                left: 0px;
+                width: 200px;
+                border: 1px red solid;
+            }
+            .section {
+                position: static;
+                border: 1px green solid;
+                margin-left: 202px;
+            }
+            .fixed {
+                position: fixed;
+                left: 0px;
+                bottom: 0px;
+                width: 100%;
+                border: 1px black solid;
+            }
+            .footer {
+                position: static;
+                border: 1px black solid;
+            }
+            body {
+                margin-top: 60px;
+                margin-bottom: 60px;
+            }
+        </style>
+    </head>
+    <body>
+        <div class="container">
+            <div class="banar">
+                <p style="text-align: center">banar</p>
+            </div>
+            <div class="nav">
+                <ul>
+                    <li>home</li>
+                    <li>blog</li>
+                    <li>photos</li>
+                    <li>wiki</li>
+                    <li>about</li>
+                </ul>
+            </div>
+            <div class="section">
+                <p>section1</p>
+            </div>
+            <div class="section">
+                <p>section2</p>
+            </div>
+            <div class="section">
+                <p>section3</p>
+            </div>
+            <div class="section">
+                <p>section4</p>
+            </div>
+            <div class="footer">
+                <p style="text-align: center">footer</p>
+            </div>
+        </div>
+        <div class="fixed">
+            <p>这是是一个fixed的position</p>
+        </div>
+    </body>
+</html>

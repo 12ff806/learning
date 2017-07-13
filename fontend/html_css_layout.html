@@ -1,0 +1,41 @@
+<!-- 测试 border position float 等页面布局 -->
+
+<html>
+    <head>
+        <meta charset="UTF-8" />
+        <title>html css layout</title>
+        <link rel="stylesheet" href="./css/layout_test.css" type="text/css">
+    </head>
+    <body>
+        <!-- block块状元素默认会占满容器 -->
+        <div class="show-border">这是一个块状元素，即div的display属性值为block，会占一整行</div>
+
+        <!-- 两种居中的方式，第一种宽度固定不能调整，第二种当实际宽度小于最大宽度时会自动调整 -->
+        <div class="main-center-1 show-border">居中的固定宽度的div</div>
+        <div class="main-center-2 show-border">最大宽度，当实际宽度小于最大宽度时会自动调整，居中</div>
+
+        <!-- 盒子模型的宽度width指的是实际内容的宽度，不包括padding和border-width。而实际显示宽度等于width+padding+padding+border-width+border-width -->
+        <div class="simple show-border">这个div宽度设置的是1200px</div>
+        <div class="fancy show-border">这个div宽度设置的也是1200px，但是设置了padding，所以最终宽度跟上面的div不一样</div>
+
+        <!-- 定义了box-sizing属性后，只要width相同，显示宽度就会一样，不管padding和border-width相不相同 -->
+        <div class="simple-box-sizing show-border">这个div宽度设置的是1200px</div>
+        <div class="fancy-box-sizing show-border">这个div宽度设置的也是1200px，跟上面的div一样宽，是因为用了box-sizing属性</div>
+
+        <!-- position: static; -->
+        <div class="static show-border">position:static;</div>
+
+        <!-- position: relative; -->
+        <div class="relative1 show-border">position:relative1</div>
+        <div class="relative2 show-border">position:relative2</div>
+
+        <!-- position: fixed; -->
+        <div class="fixed show-border">position:fixed</div>
+
+        <!-- position: absolute; -->
+        <div class="relative show-border">
+            <p>这个元素是相对定位的。如果它是 position: static; ，那么它的绝对定位子元素会跳过它直接相对于body元素定位。</p>
+            <div class="absolute show-border">absolute 这个元素是绝对定位的。它相对于它的父元素定位。</div>
+        </div>
+    </body>
+</html>

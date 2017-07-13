@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="zh">
+    <head>
+        <meta charset="utf-8">
+        <title>Centering in CSS</title>
+        <link href="css/centering_in_css.css" type="text/css" rel="stylesheet">
+    </head>
+    <body>
+        <div class="caption">水平居中</div>
+        <section class="horizontally">
+            <div class="caption">inline/inline-*</div>
+            <div class="center-children show-border">这是个文本,属于inline元素,父元素是div,为block元素.将"inline"或"inline-*"类型元素居中,在其父元素中使用"text-align: center".</div>
+            <div class="center-children show-border">This text is centered</div>
+            <nav class="center-children show-border">
+                <a href="#">One</a>
+                <a href="#">Two</a>
+                <a href="#">Three</a>
+                <a href="#">Four</a>
+            </nav>
+            <div class="caption">block</div>
+            <div class="show-border">
+                <div class="center-me">这是个div,为block元素.将block元素居中,使用"margin: 0px auto",并且需要设置block元素的width属性,不然其宽度为100%,不需要居中.</div>
+            </div>
+            <div class="caption">multiple block</div>
+            <div class="inline-block-center show-border">
+                <div>I'm an element that is block-like with my siblings and we're centered in a row.</div>
+                <div>I'm an element that is block-like with my siblings and we're centered in a row. I have more content in me than my siblings do.</div>
+                <div>I'm an element that is block-like with my siblings and we're centered in a row.</div>
+            </div>
+            <div class="flex-center show-border">
+                <div>I'm an element that is block-like with my siblings and we're centered in a row.</div>
+                <div>I'm an element that is block-like with my siblings and we're centered in a row. I have more content in me than my siblings do.</div>
+                <div>I'm an element that is block-like with my siblings and we're centered in a row.</div>
+            </div>
+            <div class="center show-border">
+                <div>I'm an element that is block-like with my siblings and we're centered in a row.</div>
+                <div>I'm an element that is block-like with my siblings and we're centered in a row. I have more content in me than my siblings do.</div>
+                <div>I'm an element that is block-like with my siblings and we're centered in a row.</div>
+            </div>
+        </section>
+        <div class="caption">垂直居中</div>
+        <section class="vertically">
+            <div class="caption">inline/inline-*</div>
+            <div class="show-border padding-center">
+                <a href="#">We're</a>
+                <a href="#">Centered</a>
+                <a href="#">Bits of</a>
+                <a href="#">Text</a>
+            </div>
+            <div class="show-border line-height-center">
+                <div>我是一个垂直居中行</div>
+            </div>
+            <table>
+                <tr>
+                    <td>
+                        这是一个在真实表格单元里的多行文本,表格单元里的vertical-align属性默认为middle.
+                    </td>
+                </tr>
+            </table>
+            <div class="center-table">
+                <p>这是一个CSS创建的表格单元("display:table")里的多行文本,将表格单元的vertical-align属性设置为middle.</p>
+            </div>
+            <div class="caption">block</div>
+            <div class="position-center">
+                <div>这是个固定高度的block元素垂直居中在其父元素中.</div>
+            </div>
+            <div class="position-unknow-height-center">
+                <div>这是个未知高度的block元素垂直居中在其父元素中.</div>
+            </div>
+            <div class="flex-unknow-height-center">
+                <div>这是个未知高度的block元素垂直居中在其父元素中.</div>
+            </div>
+        </section>
+        <div class="caption">水平和垂直居中</div>
+        <section class="horizontally-and-vertically">
+            <div class="position-fixed-height-center">
+                <div>这是个固定宽度和高度的block元素实现水平和垂直居中在其父元素中.</div>
+            </div>
+            <div class="position-unknow-height-center">
+                <div>这是个固定高度的block元素垂直居中在其父元素中.</div>
+            </div>
+            <div class="flex-unknow-height-center">
+                <div>这是个未知高度的block元素垂直居中在其父元素中.</div>
+            </div>
+        </section>
+    </body>
+</html>

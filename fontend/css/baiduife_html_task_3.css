@@ -1,0 +1,96 @@
+*{
+    margin: 0px;
+    padding: 0px;
+    box-sizing: border-box;
+}
+
+body{
+    background-color: #FFFFFF;
+    font-size: 14px;
+    font-family: "Helvetica Neue", Helvetica, Tahoma, Arial, "PingFang SC", "Hiragino Sans GB", "Heiti SC", "Microsoft YaHei", "WenQuanYi Micro Hei", sans-serif;
+}
+
+img{
+    width: 80px;
+    height: 80px;
+    margin-bottom: 20px;
+}
+
+/* float layout */
+.float{
+    width: 1240px;
+    border: solid 1px #999;
+    margin: 20px auto;
+    padding: 20px;
+    background-color: #eee;
+    overflow: auto;
+}
+
+.profile-1{
+    float: left;
+    width: 200px;
+    border: solid 1px #999;
+    padding: 20px 20px 0px 20px;
+    background-color: #fff;
+}
+
+.profile-1 p, .profile-2 p{
+    float: right;
+}
+
+.logo-1{
+    float: right;
+    width: 120px;
+    border: solid 1px #999;
+    padding: 20px 20px 0px 20px;
+    background-color: #fff;
+}
+
+.about-1{
+    border: solid 1px #999;
+    margin: 0px 140px 0px 220px;
+    padding: 20px;
+    background-color: #fff;
+}
+
+/* position layout */
+.position{
+    position: relative;
+    border: solid 1px #999;
+    margin: 20px auto;
+    padding: 20px;
+    background-color: #eee;
+    overflow: auto;
+    width: 1240px;
+    height: 600px;
+}
+
+.profile-2{
+    position: absolute;
+    left: 20px;
+    top: 20px;
+    border: solid 1px #999;
+    padding: 20px 20px 0px 20px;
+    width: 200px;
+    background-color: #fff;
+}
+
+.about-2{
+    position: static;
+    border: solid 1px #999;
+    background-color: #fff;
+    padding: 20px;
+    margin-left: 220px;
+    margin-right: 140px;
+}
+
+.logo-2{
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    border: solid 1px #999;
+    padding: 20px 20px 0px 20px;
+    background-color: #fff;
+    width: 120px;
+}
+

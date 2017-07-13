@@ -1,0 +1,77 @@
+/**
+ * floating layer
+ * by Sin
+ * June 28 2017
+ */
+
+*{
+    margin: 0px;
+    padding: 0px;
+}
+
+body{
+    background-color: #e23;
+    width: 100%;
+    height: 1400px;
+    /*overflow-y: scroll;*/
+}
+
+#wrap{
+    background-color: #fff;
+    margin-top: 500px;
+    padding: 20px 0px;
+    width: 100%;
+    height: auto;
+}
+
+.show{
+    display: block;
+}
+
+.hide{
+    display: none;
+}
+
+#title,
+#content,
+#button,
+#scroll,
+#setwh,
+#wh,
+#move,
+#resize{
+    padding: 15px;
+}
+
+#title p,
+#content p,
+#button p,
+#scroll p,
+#setwh p,
+#move p,
+#resize p{
+    display: inline-block;
+    box-sizing: border-box;
+    margin-right: 20px;
+    padding-right: 20px;
+    width: 50%;
+    text-align: right;
+}
+
+#wh label{
+    display: inline-block;
+    margin-left: 50%;
+    padding: 10px 10px 10px 25px;
+}
+
+#btn{
+    width: 160px;
+    height: 35px;
+    border-style: none;
+    border-radius: 3px;
+    color: #fff;
+    background-color: #000;
+    margin-top: 20px;
+    margin-left: 50%;
+    transform: translateX(-50%);
+}

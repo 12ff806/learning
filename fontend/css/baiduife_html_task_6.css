@@ -1,0 +1,393 @@
+/* global */
+*{
+    margin: 0px;
+    padding: 0px;
+    box-sizing: border-box;
+}
+
+body{
+    background-color: #000000;
+    font-size: 14px;
+    font-family: "Helvetica Neue", Helvetica, Tahoma, Arial, "PingFang SC", "Hiragino Sans GB", "Heiti SC", "Microsoft YaHei", "WenQuanYi Micro Hei", sans-serif; 
+}
+
+
+/* container */
+.container{
+    background-color: #FFFFFF;
+    width: 40%;
+    margin: 40px auto;
+    padding: 0px 50px;
+}
+
+
+/* header */
+header{
+    width: 100%;
+    height: 60px;
+    border-bottom: solid 2px #999;
+    margin-bottom: 40px;
+}
+
+header nav{
+    float: left;
+    background-color: #D55D5C;
+    width: 110px;
+    height: 60px;
+}
+
+header nav a{
+    display: inline-block;
+    text-decoration: none;
+    color: #FFFFFF;
+    font-size: 14px;
+    height: 14px;
+    margin-top: 41px;
+    margin-left: 5px;
+}
+
+header p{
+    float: right;
+    color: #D55D5C;
+    font-size: 14px;
+    height: 14px;
+    margin-top: 41px;
+}
+
+
+/* main */
+main section{
+    position: relative;
+    width: 100%;
+}
+
+/* the first section */
+main section .about{
+    position: absolute;
+    top: 0px;
+    right: 0px;
+    border-top: solid 2px #D55D5C;
+    width: 25%;
+    height: 312px;
+    padding-top: 6px;
+}
+
+main section .about .about-title{
+    font-size: 17px;
+    font-weight: 500;
+    color: #333;
+    border-bottom: solid 2px #333;
+}
+
+main section .about .p1{
+    width: 64px;
+}
+
+main section .about .p2{
+    width: 120px;
+}
+
+main section .about .about-title em{
+    font-size: 25px;
+    font-weight: 550;
+    font-style: normal;
+    color: #000000;
+}
+
+main section .about .about-description{
+    font-style: italic;
+    margin: 5px 0px 30px 0px;
+    color: #666;
+}
+
+main section .about .about-number{
+    font-size: 120px;
+    font-weight: 700;
+    font-style: italic;
+    line-height: 120px;
+    color: #75B86B;
+    margin-left: -17px;
+}
+
+main section .about .about-last{
+    font-size: 60px;
+    color: #CC8090;
+}
+
+main section .about .about-last span{
+    font-size: 14px;
+    font-weight: 700;
+    display: inline-block;
+    margin-left: 5px;
+}
+
+main section .about .about-last i{
+    font-style: normal;
+    font-size: 12px;
+    font-weight: 100;
+    color: #999;
+}
+
+main section .banner-1{
+    width: 70%;
+    height: 312px;
+    margin-bottom: 30px;
+    background: url("../images/Potala-Palace.jpg") no-repeat;
+}
+
+main section .banner-1 .img-left{
+    float: left;
+    width: 200px;
+    height: 312px;
+    background-color: rgba(0, 255, 0, 0.15);
+}
+
+main section .banner-1 .img-right{
+    float: right;
+    width: 200px;
+    height: 312px;
+    background-color: rgba(255, 0, 0, 0.15);
+}
+
+main section .description{
+    width: 70%;
+    margin-bottom: 80px;
+    overflow: auto;
+}
+
+
+main section .description .what,
+main section .description .when,
+main section .description .how{
+    float: left;
+    margin-right: 20px;
+}
+
+main section .description .what{
+    width: 40%;
+}
+
+main section .description .when{
+    width: 30%;
+}
+
+main section .description .how{
+    width: 20%;
+}
+
+main section .description .what h1,
+main section .description .when h1,
+main section .description .how h1{
+    font-size: 18px;
+    font-weight: 600px;
+    text-decoration: underline;
+    margin-bottom: 5px;
+}
+
+main section .description .what h1{
+    color: #418c59;
+}
+
+main section .description .when h1{
+    color: #d2994f;
+}
+
+main section .description .how h1{
+    color: #cc7680;
+}
+
+main section .description .how div{
+    margin-top: 40px;
+}
+
+main section .description .how div p{
+    margin-top: 10px;
+}
+
+main section .description .how div p span{
+    color: #cd4a48;
+    font-style: italic;
+}
+
+
+/* the second section */
+main section .article{
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    width: 45%;
+    overflow: auto;
+}
+
+main section .article .article-title{
+    border-bottom: solid 2px #000;
+    padding-bottom: 10px;
+    margin-bottom: 20px;
+}
+
+main section .article .article-title p{
+    font-size: 30px;
+    font-weight: 600;
+    color: #11456b;
+}
+
+main section .article .article-title p em{
+    font-size: 70px;
+    font-weight: 700;
+    color: #f5e327;
+    margin-right: 15px;
+}
+
+main section .article .p0{
+    float: left;
+    font-style: normal;
+    font-size: 70px;
+    color: #f5e327;
+    margin: 0px 10px 0px 0px;
+}
+
+main section .article .p2,
+main section .article .p3,
+main section .article .p4{
+    text-indent: 2em;
+}
+
+main section .article img{
+    float: right;
+    width: 45%;
+    height: 300px;
+    margin: 10px 0px 10px 10px;
+}
+
+main section .banner-2{
+    position: relative;
+    margin-left: 48%;
+}
+
+main section .banner-2 img{
+    width: 100%;
+    height: 280px;
+}
+
+main section .banner-2 .caption{
+    position: absolute;
+    top: 220px;
+    left: 0px;
+    width: 100%;
+    height: 60px;
+    background-color: #000;
+    opacity: 0.6;
+}
+
+main section .banner-2 .caption .p1{
+    display: inline-block;
+    border-left: solid 3px #75b86b;
+    margin: 10px 5px 10px 40px;
+    padding-left: 8px;
+    font-size: 30px;
+    height: 40px;
+    color: #FFFFFF;
+    
+}
+
+main section .banner-2 .caption .p2{
+    display: inline-block;
+    font-style: italic;
+    font-size: 16px;
+    color: #72b16a;
+    
+}
+
+main section .catalog-box{
+    position: relative;
+    background-color: #eeeed6;
+    margin: 30px 0px 30px 48%;
+    height: 350px;
+}
+
+main section .catalog-box .catalog{
+    margin-left: 30px;
+    padding-top: 30px;
+    list-style-type: none;
+}
+
+main section .catalog-box .catalog li{
+    font-size: 16px;
+    margin-bottom: 20px;
+}
+
+main section .catalog-box .label{
+    position: absolute;
+    left: 0px;
+    bottom: 0px;
+    width: 60%;
+    height: 180px;
+    background-color: #D55D5C;
+    color: #FFFFFF;
+}
+    
+main section .catalog-box .label .number{
+    float: left;
+    font-size: 120px;
+    font-weight: normal;
+    height: 120px;
+    margin: 30px 10px;
+    padding: 0px 5px;
+    border-right: solid 2px #FFFFFF;
+}
+
+main section .catalog-box .label .text{
+    height: 95px;
+    margin: 42px 0px 42px 95px;
+}
+
+main section .catalog-box .label .text em{
+    font-size: 20px;
+    line-height: 1.5;
+}
+
+main section .catalog-box .quote{
+    margin-left: 63%;
+    margin-top: 55px;
+    padding: 0px 15px 0px 6px;
+}
+
+main section .catalog-box .quote p{
+    font-style: italic;
+}
+
+main section .catalog-box .quote p span{
+    display: inline-block;
+    font-size: 70px;
+    font-style: normal;
+    height: 30px;
+    color: #D55D5C;
+}
+
+main section .catalog-box .quote p span.left{
+    float: left;
+    margin: -16px 8px 0px 0px;
+}
+
+main section .catalog-box .quote p span.right{
+    float: right;
+    margin-top: -5px;
+}
+
+
+
+/* footer */
+footer{
+    width: 100%;
+    height: 60px;
+    margin-top: 40px;
+    border-top: solid 1px #999;
+    text-align: right;
+}
+
+footer a{
+    display: inline-block;
+    text-decoration: none;
+    color: #D55D5C;
+    margin-top: 3px;
+}

@@ -1,0 +1,85 @@
+*{
+    margin: 0px;
+    padding: 0px;
+}
+
+body{
+    background-color: #000;
+    font-size: 14px;
+}
+
+form{
+    width: 900px;
+    height: auto;
+    background-color: #fff;
+    padding: 40px;
+    margin: 200px auto;
+    border-radius: 20px;
+}
+
+.show{
+    display: block;
+}
+
+.hide{
+    display: none;
+}
+
+#radio-wrap,
+#school-wrap,
+#company-wrap{
+    padding: 20px;
+    text-align: center;
+}
+
+/* radio wrap */
+#radio-wrap label{
+    font-size: 24px;
+    margin-left: 5px;
+}
+
+#student{
+    width: 20px;
+    height: 20px;
+}
+
+#non-student{
+    margin-left: 200px;
+    width: 20px;
+    height: 20px;
+}
+
+
+/* school wrap */
+#school-wrap label,
+#company-wrap label{
+    font-size: 24px;
+    display: inline-block;
+    width: 100px;
+    text-align: right;
+}
+
+select{
+    display: inline-block;
+    border: solid 1px red;
+    width: 300px;
+    height: 40px;
+    font-size: 20px;
+    margin-left: 20px;
+    padding-left: 10px;
+    border-style: none;
+    border: solid 1px #000;
+    border-radius: 5px;
+}
+
+
+/* company wrap */
+#company{
+    width: 620px;
+    height: 40px;
+    margin-left: 20px;
+    border-style: none;
+    border: solid 1px #aaa;
+    border-radius: 5px;
+}
+

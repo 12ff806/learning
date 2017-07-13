@@ -1,0 +1,16 @@
+<script src="https://cdn.bootcss.com/jquery/3.1.1/jquery.min.js"></script>
+
+<script>
+$(document).ready(function() {
+    if (navigator.geolocation) {
+        navigator.geolocation.getCurrentPosition(function (position) {
+            $("#location").html("latitude: " + position.coords.latitude + "<br>longitude: " + position.coords.longitude);
+        });
+    }
+});
+</script>
+
+<div id="data">
+    <h4>You are here:</h4>
+    <p id="location">Loading..</p>
+</div>

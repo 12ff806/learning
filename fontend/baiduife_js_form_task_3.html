@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+    <head>
+        <meta charset="utf-8" />
+        <title>Baidu ife | JavaScript Form task 03</title>
+        <link href="css/baiduife_js_form_task_3.css" type="text/css" rel="stylesheet">
+        <!-- <script src="js/baiduife_js_form_task_3.js" type="text/javascript"></script>  -->
+    </head>
+    <body>
+        <form>
+            <div id="radio-wrap">
+                <input type="radio" id="student" name="radio" checked>
+                <label for="student">在校生</label>
+                <input type="radio" id="non-student" name="radio">
+                <label for="non-student">非在校生</label>
+            </div>
+            <div id="school-wrap">
+                <label>学校</label>
+                <select id="city">
+                    <option id="beijing" selected>北京</option>
+                    <option id="shanghai">上海</option>
+                    <option id="guangzhou">广州</option>
+                    <option id="shenzhen">深圳</option>
+                </select>
+                <select id="beijingschool" class="">
+                    <option>北京大学</option>
+                    <option>清华大学</option>
+                    <option>中科院大学</option>
+                </select>
+                <select id="shanghaischool" class="hide">
+                    <option>复旦大学</option>
+                    <option>上海交通大学</option>
+                    <option>上海财经大学</option>
+                </select>
+                <select id="guangzhouschool" class="hide">
+                    <option>广州大学</option>
+                    <option>广州财经大学</option>
+                    <option>广州师范大学</option>
+                </select>
+                <select id="shenzhenschool" class="hide">
+                    <option>深圳大学</option>
+                    <option>深圳财经大学</option>
+                    <option>深圳理工大学</option>
+                </select>
+            </div>
+            <div id="company-wrap">
+                <label for="company">就业单位</label>
+                <input type="text" id="company" name="company">
+            </div>
+        </form>
+
+        <script src="js/baiduife_js_form_task_3.js" type="text/javascript"></script>
+    </body>
+</html>
