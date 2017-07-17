@@ -15,8 +15,8 @@ rasputin = media.Movie("Rasputin", "格里高利·叶菲莫维奇·拉斯普京�
 print(media.Movie.VALID_RATINGS)
 print(media.Movie.__doc__)  # Predefined Class Attributes: "__doc__" means the class documentation string.
 print(media.Movie.__name__)  # Predefined Class Attributes: "__name__" means the name of the class.
-print(media.Movie.__module__)  # Predefined Class Attributes: "__name__" means The name of the module in which this class was defined.
-print(media.Movie.__dict__)  # Predefined Class Attributes: "__name__" means The class name space.
+print(media.Movie.__module__)  # Predefined Class Attributes: "__module__" means The name of the module in which this class was defined.
+print(media.Movie.__dict__)  # Predefined Class Attributes: "__dict__" means The class name space.
 print(rasputin.__class__)  # Instance Attributes: "__class__" means The class of this instance.
 print(rasputin.__dict__)  # Instance Attributes: "__dict__" means The instance name space.
 print(rasputin.VALID_RATINGS)
