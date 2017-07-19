@@ -16,7 +16,7 @@ def get_page(url):
 
 def get_next_target(page_content):
     start_link = page_content.find("<a href=")
-    if start_link == "-1":
+    if start_link == -1:
         return None, 0
     start_quote = page_content.find("\"", start_link)
     end_quote = page_content.find("\"", start_quote + 1)
