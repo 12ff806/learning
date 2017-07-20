@@ -189,8 +189,8 @@ def main():
             if not tlzz_list:
                 print("UP主更新了视频,但是通灵之战还没有更新喔!")
             else:
-                print("通灵之站更新啦!!! 地址为: %s " % str(tlzz_list))
-                send_msg("通灵之站更新啦!!! 地址为: %s " % str(tlzz_list))
+                print("通灵之战更新啦!!! 地址为: %s " % str(tlzz_list))
+                send_msg("通灵之战更新啦!!! 地址为: %s " % str(tlzz_list))
         else:
             print("UP主可能删除了某些视频!")
             #send_msg("UP主可能删除了某些视频!")
