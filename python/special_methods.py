@@ -3,7 +3,6 @@
 
 
 
-# __str__() 返回用户看到的字符串
 class Student1(object):
     def __init__(self, name):
         self.name = name
@@ -12,6 +11,7 @@ print(Student1("Michael"))  # <__main__.Student1 object at 0x7fce6b53a4a8>
 print("------------------------")
 
 
+# __str__() 返回用户看到的字符串
 class Student2(object):
     def __init__(self, name):
         self.name = name
@@ -97,7 +97,7 @@ class Fib3(object):
         if isinstance(n, slice):
             start = n.start
             stop = n.stop
-            step = n.step
+            #step = n.step
             if start is None:
                 start = 0
             a, b = 1, 1
@@ -156,6 +156,7 @@ print("------------------------")
 
 
 # __getattr__() 实现链式调用
+# __call__() 可以直接对实例进行调用
 class Chain(object):
     def __init__(self, path=""):
         self.__path = path
@@ -171,6 +172,13 @@ class Chain(object):
 
     __repr__ = __str__
 
-print(Chain().status.user.timeline.list)
-print(Chain().users("michael").repos)
+print(Chain().status.user.timeline.list)  # /status/user/timeline/list
+print(Chain().users("michael").repos)  # /users/michael/repos
+# 用callable()判断 一个对象是否能被调用
+print(callable(Chain()))  # True 
+print(callable(max))  # True
+print(callable([1, 2, 3]))  # False
+print(callable(None))  # False
+
+
 
