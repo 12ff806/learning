@@ -2,7 +2,8 @@
 # -*- coding: utf-8 -*-
 
 
-# 协程的实现
+
+# yield 实现生产者消费者模型
 def consumer():
     r = ""
     while True:
@@ -22,7 +23,6 @@ def produce(c):
         r = c.send(n)
         print("[PRODUCE] Consumer return: %s" % r)
     c.close()
-
 
 c = consumer()
 produce(c)
