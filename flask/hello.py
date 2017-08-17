@@ -7,7 +7,17 @@ from flask import request
 from flask import make_response
 from flask import redirect
 from flask import abort
+from flask import render_template
 from flask_script import Manager
+from flask_bootstrap import Bootstrap
+from flask_moment import Moment
+from datetime import datetime
+
+
+app = Flask(__name__)
+manager = Manager(app)
+bootstrap = Bootstrap(app)
+moment = Moment(app)
 
 
 class User(object):
@@ -15,9 +25,11 @@ class User(object):
         self.userid = userid
         self.username = username
 
+
 user1 = User(1, "Sin")
 user2 = User(2, "Janus")
-users = [user1, user2]
+user3 = User(3, "ahaSin")
+users = [user1, user2, user3]
 
 
 def load_user(id):
@@ -27,13 +39,21 @@ def load_user(id):
     return None
 
 
-app = Flask(__name__)
-manager = Manager(app)
+@app.errorhandler(404)
+def page_not_found(e):
+    return render_template("404.html"), 404
+
+
+@app.errorhandler(500)
+def page_not_found(e):
+    return render_template("500.html"), 500
 
 
 @app.route("/")
 def index():
-    return redirect("/user/1")
+    return render_template("index.html", current_time=datetime.utcnow()) 
+
+    #return redirect("/user/1")
 
     #response = make_response("<h1>This document carries a cookie!</h1>")
     #response.set_cookie("answer", "42")
@@ -48,7 +68,7 @@ def user(id):
     user = load_user(id)
     if not user:
         abort(404)
-    return "<h1>Hello, %s!</h1>" % user.username
+    return render_template("user.html", name=user.username)
 
 
 if __name__ == "__main__":
