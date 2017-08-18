@@ -2,49 +2,65 @@
 # -*- coding: utf-8 -*-
 
 
+import os
 from flask import Flask, render_template, session, redirect, url_for, flash
 from flask import request
 from flask import make_response
 from flask import abort
-from flask_script import Manager
+from flask_script import Manager, Shell
 from flask_bootstrap import Bootstrap
 from flask_moment import Moment
 from flask_wtf import FlaskForm
 from wtforms import StringField, SubmitField
 from wtforms.validators import Required
+from flask_sqlalchemy import SQLAlchemy
+from flask_migrate import Migrate, MigrateCommand
 from datetime import datetime
 
+basedir = os.path.abspath(os.path.dirname(__file__))
 
 app = Flask(__name__)
 app.config["SECRET_KEY"] = "hard to guess string"
+app.config["SQLALCHEMY_DATABASE_URI"] = "sqlite:///" + os.path.join(basedir, "data.sqlite")
+app.config["SQLALCHEMY_COMMIT_ON_TEARDOWN"] = True
+app.config["SQLALCHEMY_TRACK_MODIFICATIONS"] = False
 
 manager = Manager(app)
 bootstrap = Bootstrap(app)
 moment = Moment(app)
+db = SQLAlchemy(app)
+migrate = Migrate(app, db)
+
+def make_shell_context():
+    return dict(app=app, db=db, User=User, Role=Role)
+manager.add_command("shell", Shell(make_context=make_shell_context))
+manager.add_command("db", MigrateCommand)
+
+
+class Role(db.Model):
+    __tablename__ = "roles"
+    id = db.Column(db.Integer, primary_key=True)
+    name = db.Column(db.String(64), unique=True)
+    users = db.relationship("User", backref="role", lazy="dynamic")
+
+    def __repr__(self):
+        return "<Role %r>" % self.name
+
+
+class User(db.Model):
+    __tablename__ = "users"
+    id = db.Column(db.Integer, primary_key=True)
+    username = db.Column(db.String(64), unique=True, index=True)
+    sex = db.Column(db.String(32))
+    role_id = db.Column(db.Integer, db.ForeignKey("roles.id"))
+
+    def __repr__(self):
+        return "<User %r>" % self.username
 
 
 class NameForm(FlaskForm):
     name = StringField("What is your name?", validators=[Required()])
     submit = SubmitField("Submit")
-
-
-class User(object):
-    def __init__(self, userid, username):
-        self.userid = userid
-        self.username = username
-
-
-user1 = User(1, "Sin")
-user2 = User(2, "Janus")
-user3 = User(3, "ahaSin")
-users = [user1, user2, user3]
-
-
-def load_user(id):
-    for u in users:
-        if u.userid == id:
-            return u
-    return None
 
 
 @app.errorhandler(404)
@@ -59,19 +75,31 @@ def page_not_found(e):
 
 @app.route("/", methods=["GET", "POST"])
 def index():
-    #name = None
     form = NameForm()
     if form.validate_on_submit():
-        #name = form.name.data
-        #form.name.data = ""
-        old_name = session.get("name")
-        if old_name is not None and old_name != form.name.data:
-            flash("Looks like you have changed your name!")
+        user = User.query.filter_by(username=form.name.data).first()
+        if user is None:
+            user = User(username=form.name.data)
+            db.session.add(user)
+            db.session.commit()
+            session["known"] = False
+        else:
+            session["known"] = True
         session["name"] = form.name.data
         return redirect(url_for("index"))
-    #return render_template("index.html", form=form, name=name, current_time=datetime.utcnow()) 
     return render_template("index.html",
-        form=form, name=session.get("name"), current_time=datetime.utcnow()) 
+        form=form, name=session.get("name"),
+        know = session.get("known", False), current_time=datetime.utcnow())
+    
+    #form = NameForm()
+    #if form.validate_on_submit():
+    #    old_name = session.get("name")
+    #    if old_name is not None and old_name != form.name.data:
+    #        flash("Looks like you have changed your name!")
+    #    session["name"] = form.name.data
+    #    return redirect(url_for("index"))
+    #return render_template("index.html",
+    #    form=form, name=session.get("name"), current_time=datetime.utcnow()) 
 
     #return redirect("/user/1")
 
@@ -85,7 +113,7 @@ def index():
 
 @app.route("/user/<int:id>")
 def user(id):
-    user = load_user(id)
+    user = User.query.filter_by(id=id).first()
     if not user:
         abort(404)
     return render_template("user.html", name=user.username)
@@ -93,6 +121,7 @@ def user(id):
 
 if __name__ == "__main__":
     #app.run(debug=True)
+    db.create_all()
     manager.run()
 
 
