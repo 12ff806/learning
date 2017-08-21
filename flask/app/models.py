@@ -56,10 +56,30 @@ class User(UserMixin, db.Model):
         db.session.commit()
         return True
 
+    def generate_password_reset_token(self, expiration=3600):
+        s = Serializer(current_app.config["SECRET_KEY"], expiration)
+        return s.dumps({"reset": self.id})
+
+    def reset_password(self, token, new_password):
+        s = Serializer(current_app.config["SECRET_KEY"])
+        try:
+            data = s.loads(token)
+        except:
+            return False
+        if data.get("reset") != self.id:
+            return False
+        self.password = new_password
+        db.session.add(self)
+        #db.session.commit()
+        return True
+
     def __repr__(self):
         return "<User %r>" % self.username
 
 
+# Flask-Login 要求程序实现一个回调函数, 使用指定的标识符加载用户
+# 回调函数接收以 Unicode 字符串形式表示的用户标识符
+# 如果能找到用户, 这个函数必须返回用户对象, 否则应该返回 None
 @login_manager.user_loader
 def load_user(user_id):
     return User.query.get(int(user_id))
