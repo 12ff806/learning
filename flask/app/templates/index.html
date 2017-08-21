@@ -25,6 +25,7 @@
 
 <p>The local date and time is {{ moment(current_time).format("LLLL") }}.</p>
 <p>That was {{ moment(current_time).fromNow(refresh=True) }}.</p>
+<p>{% if current_user.is_authenticated %}{{ current_user.username }}{% else %}Nobody{% endif %}</p>
 {% endblock %}
 
 

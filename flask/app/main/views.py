@@ -8,6 +8,7 @@
 from datetime import datetime
 from flask import render_template, session, redirect, url_for, current_app
 from flask import abort
+from flask_login import current_user, login_required
 from .. import db
 from ..models import User
 from ..email import send_mail
@@ -59,6 +60,7 @@ def index():
 
 
 @main.route("/user/<int:id>")
+@login_required
 def user(id):
     user = User.query.filter_by(id=id).first()
     if not user:
