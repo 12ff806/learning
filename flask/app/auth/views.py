@@ -5,7 +5,7 @@ from flask import render_template, redirect, request, url_for, flash
 from flask_login import login_user, logout_user, login_required, current_user
 from . import auth
 from .forms import LoginForm, RegistrationForm, ChangePasswordForm, \
-    PasswordResetRequestForm, PasswordResetForm
+    PasswordResetRequestForm, PasswordResetForm, ChangeEmailForm
 from .. import db
 from ..models import User
 from ..email import send_mail
@@ -55,7 +55,7 @@ def register():
         db.session.add(user)
         db.session.commit()
         token = user.generate_confirmation_token()
-        send_mail(user.email, "Confirm your Account", "auth/email/confirm", user=user, token=token)
+        send_mail(user.email, "Confirm your Account", "auth/mail/confirm", user=user, token=token)
         flash("A confirmation email has been sent to you by email.")
         return redirect(url_for("auth.login"))
     return render_template("auth/register.html", form=form)
@@ -78,7 +78,7 @@ def confirm(token):
 def resend_confirmation():
     token = current_user.generate_confirmation_token()
     send_mail(current_user.email, "Confirm Your Account",
-              "auth/email/confirm", user=current_user, token=token)
+              "auth/mail/confirm", user=current_user, token=token)
     flash("A new confirmation email has been sent to you by email.")
     return redirect(url_for("main.index"))
 
@@ -109,7 +109,7 @@ def password_reset_request():
         if user:
             token = user.generate_password_reset_token()
             send_mail(user.email, "Reset Your Password",
-                      "auth/email/reset_password",
+                      "auth/mail/reset_password",
                       user=user, token=token)
             flash("An email with instructions to reset your password has been sent to you.")
             return redirect(url_for("auth.login"))
@@ -131,8 +131,39 @@ def password_reset(token):
             flash("Your password has been updated.")
             return redirect(url_for("auth.login"))
         else:
-            flash("This is not your email.")
-            return redirect(url_for("auth.password_reset", token=token))
+            #flash("Invalid email or This link has expired")
+            return redirect(url_for("main.index"))
     return render_template("auth/reset_password.html", form=form)
+
+
+@auth.route("/change-email", methods=["GET", "POST"])
+@login_required
+def change_email_request():
+    form = ChangeEmailForm()
+    if form.validate_on_submit():
+        user = User.query.filter_by(email=form.email.data).first()
+        if user:
+            flash("This email has been registered")
+            return redirect(url_for("auth.change_email_request"))
+        else:
+            token = current_user.generate_email_change_token(form.email.data)
+            send_mail(form.email.data, "Change Your Email", \
+                      "auth/mail/change_email", \
+                      user=current_user, token=token)
+            flash("A confirmation email has been sent to you.")
+            return redirect(url_for("main.index"))
+    return render_template("auth/change_email.html", form=form)
+
+
+@auth.route("/change-email/<token>")
+@login_required
+def change_email(token):
+    if current_user.change_email(token):
+        flash("Your email has been updated. Please login again.")
+        logout_user()
+        return redirect(url_for("auth.login"))
+    else:
+        flash("The confirmation link is invalid or has expired.")
+        return redirect(url_for("main.index"))
 
 

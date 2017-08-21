@@ -59,3 +59,8 @@ class PasswordResetForm(FlaskForm):
             raise ValidationError("Unknown email address.")
 
 
+class ChangeEmailForm(FlaskForm):
+    email = StringField("New Email", validators=[Required(), Length(1, 64), Email()])
+    submit = SubmitField("Reset Password")
+
+
