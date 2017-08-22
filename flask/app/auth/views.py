@@ -141,17 +141,16 @@ def password_reset(token):
 def change_email_request():
     form = ChangeEmailForm()
     if form.validate_on_submit():
-        user = User.query.filter_by(email=form.email.data).first()
-        if user:
-            flash("This email has been registered")
-            return redirect(url_for("auth.change_email_request"))
-        else:
+        if current_user.verify_password(form.password.data):
             token = current_user.generate_email_change_token(form.email.data)
-            send_mail(form.email.data, "Change Your Email", \
+            send_mail(form.email.data, "Confirm Your Email Address", \
                       "auth/mail/change_email", \
                       user=current_user, token=token)
-            flash("A confirmation email has been sent to you.")
+            flash("An email with instructions to confirm your new email address "
+                  "has been sent to you.")
             return redirect(url_for("main.index"))
+        else:
+            flash("Invalid password.")
     return render_template("auth/change_email.html", form=form)
 
 
