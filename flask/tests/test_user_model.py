@@ -4,7 +4,7 @@
 import time
 import unittest
 from app import create_app, db
-from app.models import User
+from app.models import User, AnonymousUser, Role, Permission
 
 
 class UserModelTestCase(unittest.TestCase):
@@ -13,6 +13,7 @@ class UserModelTestCase(unittest.TestCase):
         self.app_context = self.app.app_context()
         self.app_context.push()
         db.create_all()
+        Role.insert_roles()
 
     def tearDown(self):
         db.session.remove()
@@ -97,5 +98,24 @@ class UserModelTestCase(unittest.TestCase):
         token = u1.generate_email_change_token("new_test@test.com")
         self.assertFalse(u2.change_email(token))
         self.assertTrue(u2.email == "test2@test.com")
+
+    def test_duplicate_email_change_token(self):
+        u1 = User(email="test1@test.com")
+        u2 = User(email="test2@test.com")
+        db.session.add(u1)
+        db.session.add(u2)
+        db.session.commit()
+        token = u2.generate_email_change_token("test1@test.com")
+        self.assertFalse(u2.change_email(token))
+        self.assertTrue(u2.email == "test2@test.com")
+
+    def test_roles_and_permissions(self):
+        u = User(email="test@test.com", password="cat")
+        self.assertTrue(u.can(Permission.WRITE_ARTICLES))
+        self.assertFalse(u.can(Permission.MODERATE_COMMENTS))
+
+    def test_anonymous_user(self):
+        u = AnonymousUser()
+        self.assertFalse(u.can(Permission.FOLLOW))
 
 
