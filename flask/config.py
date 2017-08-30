@@ -18,6 +18,8 @@ class Config(object):
     FLASKAPP_MAIL_SUBJECT_PREFIX = "[FlaskApp]"
     FLASKAPP_MAIL_SENDER = "FlaskApp Admin <Janus_Zhao@163.com>"
     FLASKAPP_ADMIN = os.environ.get("FLASKAPP_ADMIN") or "bugbugbug@protonmail.com"
+    FLASKAPP_POSTS_PER_PAGE = 20
+    FLASKAPP_FOLLOWERS_PER_PAGE = 50
 
     @staticmethod
     def init_app(app):

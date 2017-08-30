@@ -1,31 +1,45 @@
 {% extends "base.html" %}
 {% import "bootstrap/wtf.html" as wtf %}
+{% import "_macros.html" as macros %}
 
-{% block title %}Flaskapp{% endblock %}
+{% block title %}FlaskApp{% endblock %}
 
 {% block page_content %}
 <div class="page-header">
-    <h1>Hello, {% if name %}{{ name }}{% else %}Stranger{% endif %}!</h1>
-    {% if not know %}
-    <p>Pleased to meet you!</p>
-    {% else %}
-    <p>Happy to see you again!</p>
+    <h1>Hello {% if current_user.is_authenticated %}{{ current_user.username }}{% else %}Stranger{% endif %}!</h1>
+</div>
+
+<div>
+    {% if current_user.can(Permission.WRITE_ARTICLES) %}
+    {{ wtf.quick_form(form) }}
     {% endif %}
 </div>
 
-<!--
-<form method="POST">
-    {{ form.hidden_tag() }}
-    {{ form.name.label }} {{ form.name(id="my-text-field") }}
-    {{ form.submit() }}
-</form>
--->
+<div class="post-tabs">
+    <ul class="nav nav-tabs">
+        <li{% if not show_followed %} class="active"{% endif %}><a href="{{ url_for('main.show_all') }}">All</a></li>
+        {% if current_user.is_authenticated %}
+        <li{% if show_followed %} class="active"{% endif %}><a href="{{ url_for('main.show_followed') }}">Followers</a><li>
+        {% endif %}
+    </ul>
+    {% include "_posts.html" %}
+</div>
 
-{{ wtf.quick_form(form) }}
+{% if pagination %}
+<div class="pagination">
+    {{ macros.pagination_widget(pagination, "main.index") }}
+</div>
+{% endif %}
 
+<br>
+{% if current_time %}
 <p>The local date and time is {{ moment(current_time).format("LLLL") }}.</p>
 <p>That was {{ moment(current_time).fromNow(refresh=True) }}.</p>
-<p>{% if current_user.is_authenticated %}{{ current_user.username }}{% else %}Nobody{% endif %}</p>
+{% endif %}
+<p>{% if current_user.is_authenticated %}{{ current_user.username }}{% else %}{% endif %}</p>
 {% endblock %}
 
-
+{% block scripts %}
+{{ super() }}
+{{ pagedown.include_pagedown() }}
+{% endblock %}
