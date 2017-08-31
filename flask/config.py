@@ -20,6 +20,7 @@ class Config(object):
     FLASKAPP_ADMIN = os.environ.get("FLASKAPP_ADMIN") or "bugbugbug@protonmail.com"
     FLASKAPP_POSTS_PER_PAGE = 20
     FLASKAPP_FOLLOWERS_PER_PAGE = 50
+    FLASKAPP_COMMENTS_PER_PAGE = 20
 
     @staticmethod
     def init_app(app):
