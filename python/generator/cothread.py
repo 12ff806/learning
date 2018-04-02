@@ -31,4 +31,4 @@ if __name__ == "__main__":
     from cosax import EventHandler
     from buses import *
     
-    xml.sax.parse("allroutes.xml", EventHandler(buses_to_dicts(filter_on_field("route", "22", filter_on_field("direction", "North Bound", bus_location())))))
+    xml.sax.parse("allroutes.xml", EventHandler(buses_to_dicts(threaded(filter_on_field("route", "22", filter_on_field("direction", "North Bound", bus_location()))))))
