@@ -25,8 +25,8 @@ function get_quote(){
 
                 // show the new quote
                 var quoteText = JSON.parse(xhr.responseText);
-                current_text = quoteText.quote;
-                current_author = quoteText.author;
+                current_text = quoteText[0].quote;
+                current_author = quoteText[0].author;
                 var textObj = document.getElementById("text");
                 var authorObj = document.getElementById("author");
                 textObj.innerHTML = current_text;
@@ -56,7 +56,7 @@ function get_quote(){
     var i = Math.floor(Math.random() * data.length);
     var cat = data[i];
     xhr.open("POST", "https://andruxnet-random-famous-quotes.p.mashape.com/", true);
-    xhr.setRequestHeader("X-Mashape-Key", "vWv4G8AstZmshCYN9PrYXRL4EZlWp1frBqSjsnsaVJRORUBj65");
+    xhr.setRequestHeader("X-Mashape-Key", "JzJgUTy8JLmshRcQoWBiYTh4u7Dtp1sUKszjsnrSWaVyO63WQq");
     xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
     xhr.setRequestHeader("Accept", "application/json");
     xhr.send("cat=" + encodeURIComponent(cat));
