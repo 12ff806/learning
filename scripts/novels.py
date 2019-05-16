@@ -5,6 +5,8 @@
 __doc__ = "下载小说 需要认证token"
 
 
+import os
+import csv
 import requests
 from multiprocessing import Process
 
@@ -54,7 +56,18 @@ class Novel(object):
         :param chapter_list: 包含章节信息的列表
         """
         headers = {"Authorization": "put your token here"}
-        for chapter in chapter_list:
+
+        already_list = []
+        if "log.csv" in os.listdir(savedir):
+            with open(savedir + "log.csv", "r") as f:
+                for line in f.readlines():
+                    line = line.strip("\n")
+                    already_list.append(line)
+
+        new_list = [c for c in chapter_list if str(c["id"]) not in already_list]
+        if not new_list:
+            print(self.title + "没有更新")
+        for chapter in new_list:
             resp = requests.get(self.content_url(chapter["id"]), headers=headers)
             data = resp.json()["data"]
             title = self.title + "_" + \
@@ -65,6 +78,10 @@ class Novel(object):
 
             with open(savedir + title, "w") as f:
                 f.write(content)
+
+            with open(savedir + "log.csv", "a+") as csvfile:
+                writer = csv.DictWriter(csvfile, fieldnames=["id"])
+                writer.writerow({"id": chapter["id"]})
 
 
 if __name__ == "__main__":
