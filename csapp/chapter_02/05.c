@@ -1,4 +1,5 @@
 #include <stdio.h>
+#include <string.h>
 
 
 /* size_t 定义成 unsigned int */
