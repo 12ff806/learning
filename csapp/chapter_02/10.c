@@ -1,3 +1,10 @@
+/*
+ * cs:app
+ * homework 2.57
+ * by number29
+ * Jan 13, 2021
+ */
+
 #include <stdio.h>
 
 
