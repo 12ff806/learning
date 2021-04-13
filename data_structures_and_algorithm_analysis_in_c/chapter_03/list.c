@@ -3,6 +3,9 @@
  * 2021 04 13
  */
 
+
+#include <stdio.h>
+#include <stdlib.h>
 #include "list.h"
 
 
@@ -40,6 +43,20 @@ position find(element_type x, list l) {
 }
 
 
+/* If x is not found, then next field of returned */
+/* position is NULL */
+/* Assumes a header */
+position find_previous(element_type x, list l) {
+    position p;
+    
+    p = l;
+    while(p->next != NULL && p->next->element != x) {
+        p = p->next;
+    }
+    return p;
+}
+
+
 /* Delete first occurrence of x from a list */
 /* Assume use of a header node */
 void delete(element_type x, list l) {
@@ -55,12 +72,77 @@ void delete(element_type x, list l) {
 }
 
 
-/* If x is not found, then next field of returned */
-/* position is NULL */
-/* Assumes a header */
-position find_previous(element_type x, list l) {
-    position p;
+/* Insert (after legal position p) */
+/* Header implementation assumed */
+/* parameter l is unused in this implementation */
+void insert(element_type x, list l, position p) {
+    position tmp_cell;
     
-    p = l;
-    while(p->next != )
+    tmp_cell = malloc(sizeof(struct node));
+    if(tmp_cell == NULL) {
+        printf("out of space!!!!");
+        exit(1);
+    }
+    tmp_cell->element = x;
+    tmp_cell->next = p->next;
+    p->next = tmp_cell;
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
