@@ -4,6 +4,7 @@ struct node;
 typedef struct node *ptr_to_node;
 typedef ptr_to_node list;
 typedef ptr_to_node position;
+typedef int element_type;
 
 list make_empty(list l);
 int is_empty(list l);

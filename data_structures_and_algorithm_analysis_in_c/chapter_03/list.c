@@ -14,7 +14,7 @@ struct node
 {
     element_type element;
     position     next;
-}
+};
 
 
 /* Return true if l is empty */
@@ -86,5 +86,19 @@ void insert(element_type x, list l, position p) {
     tmp_cell->element = x;
     tmp_cell->next = p->next;
     p->next = tmp_cell;
+}
+
+
+/* Correct delete list algorithm */
+void delete_list(list l) {
+    position p, tmp_cell;
+    
+    p = l->next;
+    l->next = NULL;
+    while (p != NULL) {
+        tmp_cell = p->next;
+        free(p);
+        p = tmp_cell;
+    }
 }
 
