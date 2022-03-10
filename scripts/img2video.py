@@ -3,9 +3,45 @@
 
 import os
 import time
+import random
 
 
-def imgs2video(img_list, transition, audio_file_path=None):
+transitions = [
+    "fade",
+    "wipeleft",
+    "wiperight",
+    "wipeup",
+    "wipedown",
+    "slideleft",
+    "slideright",
+    "slideup",
+    "slidedown",
+    "circlecrop",
+    "rectcrop",
+    "distance",
+    "fadeblack",
+    "fadewhite",
+    "radial",
+    "smoothleft",
+    "smoothright",
+    "smoothup",
+    "smoothdown",
+    "circleopen",
+    "circleclose",
+    "vertopen",
+    "vertclose",
+    "horzopen",
+    "horzclose",
+    "dissolve",
+    "pixelize",
+    "diagtl",
+    "diagtr",
+    "diagbl",
+    "diagbr"
+]
+
+
+def imgs2video(img_list, transition=None, audio_file_path=None):
     """ imgs to video
     # 单张图片生成视频
     ffmpeg -framerate 0.4 -pattern_type glob -i './images/test*.jpg' -c:v libx264 -r 10 -pix_fmt yuv420p out.mp4
@@ -31,7 +67,7 @@ def imgs2video(img_list, transition, audio_file_path=None):
     for img in img_list:
         t = time.time()
         out_video_name = str(i) + "_" + "".join(str(t).split(".")) + ".mp4"
-        cmd = "ffmpeg -framerate 0.4 -pattern_type glob -i '{}' -c:v libx264 -r 10 -pix_fmt yuv420p {} > /dev/null 2>&1".format(img, out_video_name)
+        cmd = "ffmpeg -framerate 0.25 -pattern_type glob -i '{}' -c:v libx264 -r 10 -pix_fmt yuv420p {} > /dev/null 2>&1".format(img, out_video_name)
         ret = os.system(cmd)
         if ret != 0:
             continue
@@ -49,7 +85,9 @@ def imgs2video(img_list, transition, audio_file_path=None):
     for v in pic_video_list[1:]:
         t = time.time()
         out_video = str(i) + "_" + "".join(str(t).split(".")) + ".mp4";
-        cmd = 'ffmpeg -i {} -i {} -filter_complex "xfade=transition={}:duration=1:offset={},format=yuv420p" -y {} > /dev/null 2>&1'.format(start_video, v, transition, str((i-j+1)*2), out_video)
+        cmd = 'ffmpeg -i {} -i {} -filter_complex "xfade=transition={}:duration=1:offset={},format=yuv420p" -y {} > /dev/null 2>&1'.format(start_video, v, random.choice(transitions), str((i-j+1)*3), out_video)
+        if transition:
+            cmd = 'ffmpeg -i {} -i {} -filter_complex "xfade=transition={}:duration=1:offset={},format=yuv420p" -y {} > /dev/null 2>&1'.format(start_video, v, transition, str((i-j+1)*3), out_video)
         ret = os.system(cmd)
         if ret != 0:
             continue
@@ -88,7 +126,8 @@ def imgs2video(img_list, transition, audio_file_path=None):
 
 if __name__ == "__main__":
     img_list = "images"
-    transition = "radial"
+    #transition = "radial"
+    transition = None
     audio_file_path = "audios/Sample-wav-file.wav"
-    print(imgs2video(img_list, transition, audio_file_path=audio_file_path))
+    print(imgs2video(img_list, transition=transition, audio_file_path=audio_file_path))
 
