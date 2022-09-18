@@ -30,6 +30,6 @@ def html2img(url):
 
 
 if __name__ == "__main__":
-    url = "https://12ff806.github.io/tree/learning_list"
+    url = "https://12ff806.github.io/tree/items"
     html2img(url)
 
