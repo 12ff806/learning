@@ -25,6 +25,13 @@ double atof(char s[]) {
 }
 
 
+int atoi(char s[]) {
+    double atof(char s[]);
+    
+    return (int) atof(s);
+}
+
+
 int getline_v1(char line[], int max) {
     int i, c;
     
