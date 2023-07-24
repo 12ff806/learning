@@ -3,11 +3,14 @@
 
 import re
 import requests
-from PIL import Image
+from PIL import Image, ImageFont, ImageDraw, ImageFile
 from io import BytesIO
 import datetime
 import argparse
 import os
+
+
+ImageFile.LOAD_TRUNCATED_IMAGES = True
 
 
 def get_args():
@@ -111,9 +114,28 @@ def draw_img(img_name, coord_str, time_str, location_str):
     """
     try:
         img = Image.open(img_name)
-        pass
+        
+        img_dr = ImageDraw.Draw(img)
+        
+        # 画时间
+        font = ImageFont.truetype('/usr/share/fonts/noto/NotoSansMono-Regular.ttf', 30)
+        img_dr.text((5, 989), time_str, font=font, fill=(255,0,0))
+
+        # 画线
+        if location_str:
+            location_list = location_str.split("||")
+            location_list = list(reversed(location_list))
+            pre_location = "512,512"
+            for loc in location_list:
+                pre_loc_x, pre_loc_y = pre_location.split(",")
+                loc_x, loc_y = loc.split(",")
+                img_dr.line((pre_loc_x, pre_loc_y, loc_x, loc_y), fill=(0, 0, 255), width=5)
+                pre_location = loc
+
+        img_dr.ellipse((505, 505, 519, 519), fill=(255,0,0), outline=(255,0,0), width=2)
+        img.save(img_name, quality=100)
     except Exception as e:
-        pass
+        print(e)
 
 
 def run(kml_file):
@@ -137,9 +159,28 @@ def run(kml_file):
             save_name = save_path + "/" + str(i+1) + ".png"
             get_map_img_by_coord(coord_str, save_name)
 
-            # 获取当前坐标前5个坐标 和 坐标 在图片中的相对位置
+            # 获取当前坐标前20个坐标 和 坐标 在图片中的相对位置
             pix_coord_list = []
-            pix_list = coord_list[i-5: i] or coord_list[i-4: i] or coord_list[i-3: i] or coord_list[i-2: i] or coord_list[i-1: i]
+            pix_list = coord_list[i-20: i] or \
+                       coord_list[i-19: i] or \
+                       coord_list[i-18: i] or \
+                       coord_list[i-17: i] or \
+                       coord_list[i-16: i] or \
+                       coord_list[i-15: i] or \
+                       coord_list[i-14: i] or \
+                       coord_list[i-13: i] or \
+                       coord_list[i-12: i] or \
+                       coord_list[i-11: i] or \
+                       coord_list[i-10: i] or \
+                       coord_list[i-9: i] or \
+                       coord_list[i-8: i] or \
+                       coord_list[i-7: i] or \
+                       coord_list[i-6: i] or \
+                       coord_list[i-5: i] or \
+                       coord_list[i-4: i] or \
+                       coord_list[i-3: i] or \
+                       coord_list[i-2: i] or \
+                       coord_list[i-1: i]
             for pix in pix_list:
                 pix_coord = coord_extract(pix)
                 pix_coord_list.append(pix_coord)
