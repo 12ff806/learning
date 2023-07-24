@@ -129,7 +129,7 @@ def draw_img(img_name, coord_str, time_str, location_str):
             for loc in location_list:
                 pre_loc_x, pre_loc_y = pre_location.split(",")
                 loc_x, loc_y = loc.split(",")
-                img_dr.line((pre_loc_x, pre_loc_y, loc_x, loc_y), fill=(0, 0, 255), width=5)
+                img_dr.line((int(pre_loc_x), int(pre_loc_y), int(loc_x), int(loc_y)), fill=(0, 0, 255), width=5)
                 pre_location = loc
 
         img_dr.ellipse((505, 505, 519, 519), fill=(255,0,0), outline=(255,0,0), width=2)
@@ -142,6 +142,8 @@ def run(kml_file):
     try:
         # 获取 坐标 和 时间 列表
         coord_list, time_list = read_kml(kml_file)
+        #print(coord_list)
+        #print(time_list)
         
         # 遍历 坐标 和 时间 列表
         for i in range(len(coord_list)):
@@ -159,21 +161,9 @@ def run(kml_file):
             save_name = save_path + "/" + str(i+1) + ".png"
             get_map_img_by_coord(coord_str, save_name)
 
-            # 获取当前坐标前20个坐标 和 坐标 在图片中的相对位置
+            # 获取当前坐标前8个坐标 和 坐标 在图片中的相对位置
             pix_coord_list = []
-            pix_list = coord_list[i-20: i] or \
-                       coord_list[i-19: i] or \
-                       coord_list[i-18: i] or \
-                       coord_list[i-17: i] or \
-                       coord_list[i-16: i] or \
-                       coord_list[i-15: i] or \
-                       coord_list[i-14: i] or \
-                       coord_list[i-13: i] or \
-                       coord_list[i-12: i] or \
-                       coord_list[i-11: i] or \
-                       coord_list[i-10: i] or \
-                       coord_list[i-9: i] or \
-                       coord_list[i-8: i] or \
+            pix_list = coord_list[i-8: i] or \
                        coord_list[i-7: i] or \
                        coord_list[i-6: i] or \
                        coord_list[i-5: i] or \
@@ -189,10 +179,14 @@ def run(kml_file):
             if pix_coord_list:
                 pix_location = "|".join(pix_coord_list)
 
+            #print(pix_location)
+
             # 获取坐标在图片中的相对位置
             location_str = ""
             if pix_location:
                 location_str = get_img_location(coord_str, pix_location)
+
+            print(location_str)
             
             # 画图
             draw_img(save_name, coord_str, time_str, location_str)
