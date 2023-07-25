@@ -120,7 +120,7 @@ def draw_img(img_name, coord_str, time_str, location_str):
         img_dr = ImageDraw.Draw(img)
         
         # 画时间
-        font = ImageFont.truetype('/usr/share/fonts/noto/NotoSansMono-Regular.ttf', 28)
+        font = ImageFont.truetype('/usr/share/fonts/noto/NotoSansMono-Regular.ttf', 27)
         img_dr.text((5, 543), time_str, font=font, fill=(255,0,0))
 
         # 画线
@@ -131,7 +131,7 @@ def draw_img(img_name, coord_str, time_str, location_str):
             for loc in location_list:
                 pre_loc_x, pre_loc_y = pre_location.split(",")
                 loc_x, loc_y = loc.split(",")
-                img_dr.line((int(pre_loc_x), int(pre_loc_y), int(loc_x), int(loc_y)), fill=(0, 0, 255), width=5)
+                img_dr.line((int(pre_loc_x), int(pre_loc_y), int(loc_x), int(loc_y)), fill=(0, 0, 255), width=4)
                 pre_location = loc
 
         img_dr.ellipse((505, 281, 519, 295), fill=(255,0,0), outline=(255,0,0), width=1)
