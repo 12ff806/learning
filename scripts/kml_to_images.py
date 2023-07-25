@@ -80,7 +80,7 @@ def get_map_img_by_coord(coord_str, save_name):
     try:
         # 天地图key
         token = "e429c9f1fb0420bd07eb0b26129fdfea"
-        url_schema = "http://api.tianditu.gov.cn/staticimage?center={}&width=1024&height=1024&zoom=16&layers=vec_c,cva_c&tk={}"
+        url_schema = "http://api.tianditu.gov.cn/staticimage?center={}&width=1024&height=576&zoom=15&layers=vec_c,cva_c&tk={}"
         url = url_schema.format(coord_str, token)
         
         # 请求数据
@@ -98,12 +98,14 @@ def get_img_location(center_coord, pix_location):
     try:
         # 天地图key
         token = "e429c9f1fb0420bd07eb0b26129fdfea"
-        url_schema = "http://api.tianditu.gov.cn/staticimage?center={}&width=1024&height=1024&zoom=16&layers=vec_c,cva_c&pixLocation={}&tk={}"
+        url_schema = "http://api.tianditu.gov.cn/staticimage?center={}&width=1024&height=576&zoom=15&layers=vec_c,cva_c&pixLocation={}&tk={}"
         url = url_schema.format(center_coord, pix_location, token)
         
         # 请求数据
         s = requests.Session()
         resp = s.get(url)
+        if resp.headers.get("content-type") == "image/png":
+            return None
         return resp.text
     except Exception as e:
         return None
@@ -118,21 +120,21 @@ def draw_img(img_name, coord_str, time_str, location_str):
         img_dr = ImageDraw.Draw(img)
         
         # 画时间
-        font = ImageFont.truetype('/usr/share/fonts/noto/NotoSansMono-Regular.ttf', 30)
-        img_dr.text((5, 989), time_str, font=font, fill=(255,0,0))
+        font = ImageFont.truetype('/usr/share/fonts/noto/NotoSansMono-Regular.ttf', 28)
+        img_dr.text((5, 543), time_str, font=font, fill=(255,0,0))
 
         # 画线
         if location_str:
             location_list = location_str.split("||")
             location_list = list(reversed(location_list))
-            pre_location = "512,512"
+            pre_location = "512,288"
             for loc in location_list:
                 pre_loc_x, pre_loc_y = pre_location.split(",")
                 loc_x, loc_y = loc.split(",")
                 img_dr.line((int(pre_loc_x), int(pre_loc_y), int(loc_x), int(loc_y)), fill=(0, 0, 255), width=5)
                 pre_location = loc
 
-        img_dr.ellipse((505, 505, 519, 519), fill=(255,0,0), outline=(255,0,0), width=2)
+        img_dr.ellipse((505, 281, 519, 295), fill=(255,0,0), outline=(255,0,0), width=1)
         img.save(img_name, quality=100)
     except Exception as e:
         print(e)
@@ -161,9 +163,11 @@ def run(kml_file):
             save_name = save_path + "/" + str(i+1) + ".png"
             get_map_img_by_coord(coord_str, save_name)
 
-            # 获取当前坐标前8个坐标 和 坐标 在图片中的相对位置
+            # 获取当前坐标前10个坐标 和 坐标 在图片中的相对位置
             pix_coord_list = []
-            pix_list = coord_list[i-8: i] or \
+            pix_list = coord_list[i-10: i] or \
+                       coord_list[i-9: i] or \
+                       coord_list[i-8: i] or \
                        coord_list[i-7: i] or \
                        coord_list[i-6: i] or \
                        coord_list[i-5: i] or \
@@ -184,12 +188,17 @@ def run(kml_file):
             # 获取坐标在图片中的相对位置
             location_str = ""
             if pix_location:
-                location_str = get_img_location(coord_str, pix_location)
+                while True:
+                    location_str = get_img_location(coord_str, pix_location)
+                    if location_str:
+                        break
 
-            print(location_str)
+            #print(location_str)
             
             # 画图
             draw_img(save_name, coord_str, time_str, location_str)
+
+            print(save_name)
     except Exception as e:
         print(e)
 
