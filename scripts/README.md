@@ -9,4 +9,5 @@
 * asciimage.py -- 将彩色图片转换为字符图片
 * html2img.py -- html截图
 * img2video.py -- 图片和音频合成视频
+* kml_to_images.py -- 通过两步路的骑行轨迹(kml文件)合成视频
 

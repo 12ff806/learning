@@ -13,6 +13,10 @@ import os
 ImageFile.LOAD_TRUNCATED_IMAGES = True
 
 
+# 天地图key 需要加上自己的key
+token = ""
+
+
 def get_args():
     """ 获取程序输入参数
     """
@@ -78,8 +82,6 @@ def get_map_img_by_coord(coord_str, save_name):
     """ 通过坐标获取地图矢量图
     """
     try:
-        # 天地图key
-        token = "e429c9f1fb0420bd07eb0b26129fdfea"
         url_schema = "http://api.tianditu.gov.cn/staticimage?center={}&width=1024&height=576&zoom=15&layers=vec_c,cva_c&tk={}"
         url = url_schema.format(coord_str, token)
         
@@ -96,8 +98,6 @@ def get_img_location(center_coord, pix_location):
     """ 获取相对位置的屏幕标注坐标
     """
     try:
-        # 天地图key
-        token = "e429c9f1fb0420bd07eb0b26129fdfea"
         url_schema = "http://api.tianditu.gov.cn/staticimage?center={}&width=1024&height=576&zoom=15&layers=vec_c,cva_c&pixLocation={}&tk={}"
         url = url_schema.format(center_coord, pix_location, token)
         
@@ -204,14 +204,6 @@ def run(kml_file):
 
 
 if __name__ == "__main__":
-    #coord_str = "116.414392,39.946199"
-    #save_name = "test.png"
-    #get_map_img_by_coord(coord_str, save_name)
-
-    #center_coord = "116.414392,39.946199"
-    #pix_location = "116.414392,39.946199|116.414392,39.946199"
-    #print(get_img_location(center_coord, pix_location))
-
     kml_file = get_args()
     run(kml_file)
 
