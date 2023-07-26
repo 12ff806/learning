@@ -176,6 +176,7 @@ def draw_img(img_name, coord_str, time_str):
     """
     try:
         img = Image.open(img_name)
+        img = img.convert("RGBA")
         
         img_dr = ImageDraw.Draw(img)
         
