@@ -9,6 +9,8 @@ import datetime
 import argparse
 import os
 import math
+import cv2
+import glob
 
 
 ImageFile.LOAD_TRUNCATED_IMAGES = True
@@ -75,11 +77,13 @@ def get_args():
     """
     parser = argparse.ArgumentParser()
     parser.add_argument("-f", "--kmlfile", type = str, default = "test.kml")
+    parser.add_argument("-v", "--video", type = str, default = "")
     
     args = parser.parse_args()
     kml_file = args.kmlfile
+    video = args.video
     
-    return kml_file
+    return kml_file, video
 
 
 #def coord_extract(coord_str):
@@ -191,6 +195,34 @@ def draw_img(img_name, coord_str, time_str):
         print(e)
 
 
+def images_to_video(img_path):
+    """ 图片合成视频
+    """
+    try:
+        frame_size = (1024, 576)
+        out_video_name = img_path + "/" + "output_video.avi"
+        out = cv2.VideoWriter(out_video_name ,cv2.VideoWriter_fourcc(*'DIVX'), 10, frame_size)
+
+        img_list = glob.glob(img_path + "/*.png")
+
+        def natural_sort_key(s):
+            """ 按文件名的结构排序 即依次比较文件名的非数字和数字部分
+            """
+            sub_strings = re.split(r"(\d+)", s)
+            sub_strings = [int(c) if c.isdigit() else c for c in sub_strings]
+            return sub_strings
+
+        img_list = sorted(img_list, key=natural_sort_key)
+        
+        for img_name in img_list:
+            img = cv2.imread(img_name)
+            out.write(img)
+
+        out.release()
+    except Exception as e:
+        print(e)
+
+
 def run(kml_file):
     try:
         # 获取 坐标 和 时间 列表
@@ -208,6 +240,11 @@ def run(kml_file):
             lng_new, lat_new = llt.WGS84_to_GCJ02(lng, lat)
             coord_list.append("{},{}".format(lng_new, lat_new))
         
+        # 图片 视频 保存路径
+        save_path = "kml_imgs"
+        if not os.path.exists(save_path):
+            os.makedirs(save_path)
+
         # 遍历 坐标 和 时间 列表
         for i in range(len(coord_list)):
             coord_str = coord_list[i]
@@ -231,9 +268,6 @@ def run(kml_file):
                 pix_list.append(coord_str)
 
             # 获取地图矢量图
-            save_path = "kml_imgs"
-            if not os.path.exists(save_path):
-                os.makedirs(save_path)
             save_name = save_path + "/" + str(i+1) + ".png"
             
             get_map_img_by_coord(coord_str, save_name, pix_list)
@@ -245,11 +279,17 @@ def run(kml_file):
                 draw_img(save_name, coord_str, time_str)
 
             print(save_name)
+
+        # 合成视频
+        images_to_video(save_path)
     except Exception as e:
         print(e)
 
 
 if __name__ == "__main__":
-    kml_file = get_args()
-    run(kml_file)
+    kml_file, video = get_args()
+    if video:
+        images_to_video(video)
+    else:
+        run(kml_file)
 
