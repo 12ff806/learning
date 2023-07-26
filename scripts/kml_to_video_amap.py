@@ -185,8 +185,12 @@ def draw_img(img_name, coord_str, time_str):
         img_dr = ImageDraw.Draw(img)
         
         # 画时间
-        font = ImageFont.truetype('/usr/share/fonts/noto/NotoSansMono-Regular.ttf', 27)
-        img_dr.text((5, 543), time_str, font=font, fill=(255,0,0))
+        font_time = ImageFont.truetype('/usr/share/fonts/noto/NotoSansMono-Regular.ttf', 18)
+        img_dr.text((808, 547), time_str, font=font_time, fill=(255,0,0))
+
+        # 画logo
+        font_logo = ImageFont.truetype('/usr/share/fonts/adobe-source-han-sans/SourceHanSansCN-Bold.otf', 20)
+        img_dr.text((911, 5), "虚无制造机", font=font_logo, fill=(255,0,0))
         
         # 画圆
         img_dr.ellipse((505, 281, 519, 295), fill=(255,0,0), outline=(255,0,0), width=1)
@@ -205,14 +209,15 @@ def images_to_video(img_path):
 
         img_list = glob.glob(img_path + "/*.png")
 
-        def natural_sort_key(s):
-            """ 按文件名的结构排序 即依次比较文件名的非数字和数字部分
-            """
-            sub_strings = re.split(r"(\d+)", s)
-            sub_strings = [int(c) if c.isdigit() else c for c in sub_strings]
-            return sub_strings
+        #def natural_sort_key(s):
+        #    """ 按文件名的结构排序 即依次比较文件名的非数字和数字部分
+        #    """
+        #    sub_strings = re.split(r"(\d+)", s)
+        #    sub_strings = [int(c) if c.isdigit() else c for c in sub_strings]
+        #    return sub_strings
 
-        img_list = sorted(img_list, key=natural_sort_key)
+        #img_list = sorted(img_list, key=natural_sort_key)
+        img_list = sorted(img_list, key=lambda x: int(re.search("(\d+)", x).group()))
         
         for img_name in img_list:
             img = cv2.imread(img_name)
