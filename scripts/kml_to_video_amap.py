@@ -86,15 +86,6 @@ def get_args():
     return kml_file, video
 
 
-#def coord_extract(coord_str):
-#    """ 提取坐标字符串
-#    """
-#    try:
-#        return ",".join(coord_str.split(" ")[0:2])
-#    except Exception as e:
-#        return None
-
-
 def time_extract(time_str):
     """ 提取时间
     """
@@ -185,11 +176,13 @@ def draw_img(img_name, coord_str, time_str):
         img_dr = ImageDraw.Draw(img)
         
         # 画时间
-        font_time = ImageFont.truetype('/usr/share/fonts/noto/NotoSansMono-Regular.ttf', 18)
+        #font_time = ImageFont.truetype('/usr/share/fonts/noto/NotoSansMono-Regular.ttf', 18)
+        font_time = ImageFont.truetype("/System/Library/Fonts/SFNSMono.ttf", 18)
         img_dr.text((808, 547), time_str, font=font_time, fill=(255,0,0))
 
         # 画logo
-        font_logo = ImageFont.truetype('/usr/share/fonts/adobe-source-han-sans/SourceHanSansCN-Bold.otf', 20)
+        #font_logo = ImageFont.truetype('/usr/share/fonts/adobe-source-han-sans/SourceHanSansCN-Bold.otf', 20)
+        font_logo = ImageFont.truetype("/System/Library/Fonts/PingFang.ttc", 20)
         img_dr.text((911, 5), "虚无制造机", font=font_logo, fill=(255,0,0))
         
         # 画圆
