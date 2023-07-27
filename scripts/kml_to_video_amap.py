@@ -197,8 +197,12 @@ def images_to_video(img_path):
     """
     try:
         frame_size = (1024, 576)
-        out_video_name = img_path + "/" + "output_video.avi"
-        out = cv2.VideoWriter(out_video_name ,cv2.VideoWriter_fourcc(*'DIVX'), 10, frame_size)
+        #out_video_name = img_path + "/" + "output_video.avi"
+        #fourcc = cv2.VideoWriter_fourcc("D", "I", "V", "X")
+        out_video_name = img_path + "/" + "output_video.mp4"
+        #fourcc = cv2.VideoWriter_fourcc("X", "2", "6", "4")
+        fourcc = cv2.VideoWriter_fourcc("M", "P", "4", "V")
+        out = cv2.VideoWriter(out_video_name, fourcc, 10, frame_size)
 
         img_list = glob.glob(img_path + "/*.png")
 
